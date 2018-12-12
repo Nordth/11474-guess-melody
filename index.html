@@ -7,7 +7,7 @@
 </head>
 <body>
 
-  <main class="app">
+  <main class="app" id="app">
     <svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: -1200em;">
       <filter id="blur">
         <feGaussianBlur in="SourceGraphic" stdDeviation="5"></feGaussianBlur>
@@ -19,7 +19,7 @@
       </filter>
     </svg>
 
-    <section class="main">
+    <section class="main" id="main" data-screen="0">
 
     </section>
 
@@ -243,6 +243,6 @@
     </div>
   </section>
 </template>
-
+<script src="js/main.js"></script>
 </body>
 </html>

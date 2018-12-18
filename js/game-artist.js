@@ -1,11 +1,10 @@
-import {createElmt, screenChange} from './util.js';
+import {createElement, changeScreen} from './util.js';
 import gameResultScreen from './result-success.js';
 import gameFailTimeScreen from './fail-time.js';
 import gameFailTriesScreen from './fail-tries.js';
 import welcomeScreen from './welcome.js';
 
-const element = createElmt(`<div id="game-artist">
-  <section class="game game--artist">
+const element = createElement(`<section class="game game--artist">
     <header class="game__header">
       <a class="game__back" href="#">
         <span class="visually-hidden">Сыграть ещё раз</span>
@@ -62,8 +61,7 @@ const element = createElmt(`<div id="game-artist">
         </div>
       </form>
     </section>
-  </section>
-</div>`);
+  </section>`);
 
 element.onclick = () => {
   const target = event.target;
@@ -75,25 +73,24 @@ element.onclick = () => {
   const min = 1;
   const max = 3;
   const rundomNumber = Math.round(min - 0.5 + Math.random() * (max - min + 1));
-  console.log(rundomNumber);
   switch (rundomNumber) {
     case 1:
-      screenChange(gameResultScreen);
+      changeScreen(gameResultScreen);
       break;
     case 2:
-      screenChange(gameFailTimeScreen);
+      changeScreen(gameFailTimeScreen);
       break;
     case 3:
-      screenChange(gameFailTriesScreen);
+      changeScreen(gameFailTriesScreen);
       break;
     default:
-      screenChange(gameResultScreen);
+      changeScreen(gameResultScreen);
   }
 };
 
 const resetButton = element.querySelector(`.game__back`);
 resetButton.addEventListener(`click`, () => {
-  screenChange(welcomeScreen);
+  changeScreen(welcomeScreen);
 });
 
 export default element;

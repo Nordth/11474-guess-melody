@@ -1,9 +1,8 @@
-import {createElmt, screenChange} from './util.js';
+import {createElement, changeScreen} from './util.js';
 import gameArtistScreen from './game-artist.js';
 import welcomeScreen from './welcome.js';
 
-const element = createElmt(`<div id="game-genre">
-  <section class="game game--genre">
+const element = createElement(`<section class="game game--genre">
     <header class="game__header">
       <a class="game__back" href="#">
         <span class="visually-hidden">Сыграть ещё раз</span>
@@ -78,13 +77,12 @@ const element = createElmt(`<div id="game-genre">
         <button class="game__submit button" type="submit" disabled>Ответить</button>
       </form>
     </section>
-  </section>
-</div>`);
+  </section>`);
 
 const answerButton = element.querySelector(`.game__submit`);
 
 answerButton.addEventListener(`click`, () => {
-    screenChange(gameArtistScreen);
+  changeScreen(gameArtistScreen);
 });
 
 // по клику на выбор трека активируем кнопку отправки, либо деактивируем, если не выбран ни один трек
@@ -94,18 +92,19 @@ element.onclick = () => {
   if (!check) {
     return;
   }
-  if(check.checked)
+  if (check.checked) {
     answerButton.disabled = false;
-  else{
+  } else {
     const checkedElements = element.querySelectorAll(`input.game__input:checked`);
-    if(checkedElements.length == 0)
+    if (checkedElements.length === 0) {
       answerButton.disabled = true;
+    }
   }
 };
 
 const resetButton = element.querySelector(`.game__back`);
 resetButton.addEventListener(`click`, () => {
-  screenChange(welcomeScreen);
+  changeScreen(welcomeScreen);
 });
 
 export default element;
